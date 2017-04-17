@@ -1,4 +1,20 @@
-export default function babelLoader() {
+const hmrPlugins =[['react-transform', {
+  transforms: [{
+    transform: 'react-transform-hmr',
+    imports: ['react'],
+    locals: ['module'],
+  }, {
+    transform: 'react-transform-catch-errors',
+    imports: ['react', 'redbox-react'],
+  }],
+  superClasses: [
+    'React.Component',
+    'Component',
+    'PureComponent',
+  ],
+}]]
+
+export default function babelLoader(options) {
   return {
     loader: 'babel-loader',
     test: /\.js$/,
@@ -17,31 +33,10 @@ export default function babelLoader() {
             regenerator: false,
           },
         ],
+        ...(options.useDevServer ? hmrPlugins : []),
+        ...(options.env === 'development' ? [] : ['transform-react-constant-elements']),
       ],
-      env: {
-        development: {
-          plugins: [[
-            'react-transform', {
-              transforms: [{
-                transform: 'react-transform-hmr',
-                imports: ['react'],
-                locals: ['module'],
-              }, {
-                transform: 'react-transform-catch-errors',
-                imports: ['react', 'redbox-react'],
-              }],
-              superClasses: [
-                'React.Component',
-                'Component',
-                'PureComponent',
-              ],
-            },
-          ]],
-        },
-        production: {
-          plugins: ['transform-react-constant-elements'],
-        },
-      },
+
     },
   }
 }

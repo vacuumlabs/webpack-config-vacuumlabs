@@ -35,7 +35,7 @@ function rule(transform, ext) {
 }
 
 export function loaders(options) {
-  const transform = options.env === 'development'
+  const transform = options.useDevServer
     ? (l) => ['style-loader', ...l]
     : (l) => ExtractTextPlugin.extract({fallback: 'style-loader', use: l})
 
@@ -45,7 +45,7 @@ export function loaders(options) {
 // Render styles into separate cacheable file to prevent FOUC and
 // optimize for critical rendering path.
 export function plugins(options) {
-  return options.env === 'development'
+  return options.useDevServer
     ? []
     : [new ExtractTextPlugin({filename: 'app.css', allChunks: true})]
 }

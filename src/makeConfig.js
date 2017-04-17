@@ -11,7 +11,7 @@ import output from './output'
 export default function makeConfig(options) {
   return {
     // the cache seems to be in-memory only: https://webpack.github.io/docs/configuration.html#cache
-    cache: options.env === 'development',
+    cache: options.useDevServer,
 
     // cheap-module-eval-source-map, because we want original source, but we don't
     // care about columns, which makes this devtool faster than eval-source-map.
@@ -28,7 +28,7 @@ export default function makeConfig(options) {
     module: {
       rules: [
         ...assetsLoaders,
-        babelLoader(),
+        babelLoader(options),
         ...devtools.loaders(options),
         ...styles.loaders(options),
       ],

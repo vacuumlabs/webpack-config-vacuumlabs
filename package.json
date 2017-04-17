@@ -1,6 +1,6 @@
 {
   "name": "webpack-config-vacuumlabs",
-  "version": "1.0.1",
+  "version": "1.1.2",
   "description": "Default Webpack2 config we use in vacuumlabs.",
   "main": "dist/index.js",
   "scripts": {
@@ -26,6 +26,7 @@
   "dependencies": {
     "compression": "^1.6.2",
     "express": "^4.15.2",
+    "gulp-util": "^3.0.8",
     "lodash": "^4.17.4",
     "webpack-dev-middleware": "^1.10.1",
     "webpack-hot-middleware": "^2.18.0"
