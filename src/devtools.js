@@ -12,6 +12,9 @@ export function loaders(options) {
       loader: 'eslint-loader',
       exclude: /node_modules/,
       test: /\.js/,
+      options: {
+        emitWarning: true
+      },
     }] : []
 }
 
