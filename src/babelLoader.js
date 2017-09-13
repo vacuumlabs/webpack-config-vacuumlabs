@@ -25,14 +25,6 @@ export default function babelLoader(options) {
       presets: [['env', {modules: false}], 'react', 'stage-0'],
       plugins: [
         'transform-decorators-legacy',
-        [
-          'transform-runtime',
-          {
-            helpers: false,
-            polyfill: false,
-            regenerator: false,
-          },
-        ],
         ...(options.useDevServer ? hmrPlugins : []),
         ...(options.env === 'development' ? [] : ['transform-react-constant-elements']),
       ],
