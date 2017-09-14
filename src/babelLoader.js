@@ -1,10 +1,3 @@
-const reportErrorPlugins =[['react-transform', {
-  transforms: [{
-    transform: 'react-transform-catch-errors',
-    imports: ['react', 'redbox-react'],
-  }],
-}]]
-
 export default function babelLoader(options) {
   return {
     loader: 'babel-loader',
@@ -16,7 +9,7 @@ export default function babelLoader(options) {
       presets: [['env', {modules: false}], 'react', 'stage-0'],
       plugins: [
         'transform-decorators-legacy',
-        ...(options.useDevServer ? reportErrorPlugins : []),
+        ...(options.useDevServer ? ['react-hot-loader/babel'] : []),
         ...(options.env === 'development' ? [] : ['transform-react-constant-elements']),
       ],
 
