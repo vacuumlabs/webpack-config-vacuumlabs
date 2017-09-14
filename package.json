@@ -7,7 +7,8 @@
     "build": "babel -d dist/ src/",
     "build-watch": "babel -d dist/ src/ --watch",
     "prepublish": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -34,8 +35,13 @@
   },
   "devDependencies": {
     "babel-cli": "6",
+    "babel-eslint": "8",
     "babel-preset-node6": "11",
-    "babel-preset-stage-0": "6"
+    "babel-preset-stage-0": "6",
+    "eslint": "4",
+    "eslint-config-vacuumlabs": "1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-react": "7"
   },
   "peerDependencies": {
     "autoprefixer": "6",
