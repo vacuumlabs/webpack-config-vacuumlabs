@@ -1,6 +1,6 @@
 {
   "name": "webpack-config-vacuumlabs",
-  "version": "1.1.6",
+  "version": "1.1.8",
   "description": "Default Webpack 2 & 3 config we use in vacuumlabs.",
   "main": "dist/index.js",
   "scripts": {
@@ -41,7 +41,9 @@
     "lodash": "4",
     "node-sass": "^4.5.3",
     "postcss-loader": "2",
-    "react-hot-loader": "next",
+    "react-transform": "^0.0.3",
+    "react-transform-catch-errors": "^1.0.2",
+    "redbox-react": "^1.5.0",
     "sass-loader": "6",
     "style-loader": "0.18",
     "url-loader": "0.5",

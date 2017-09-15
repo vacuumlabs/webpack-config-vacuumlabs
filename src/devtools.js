@@ -4,8 +4,7 @@ export function entry(options) {
   return options.useDevServer
     ? [
       `webpack-dev-server/client?http://${options.host}:${options.port}`,
-      'webpack/hot/only-dev-server',
-      'react-hot-loader/patch']
+      'webpack/hot/only-dev-server']
     : []
 }
 
