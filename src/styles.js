@@ -24,11 +24,11 @@ function rule(transform, ext) {
     test: new RegExp(`\\.${ext}$`),
     oneOf: [
       {
-        resourceQuery: /global/,
-        use: transform(use(false, ext)),
+        resourceQuery: /module/,
+        use: transform(use(true, ext)),
       },
       {
-        use: transform(use(true, ext)),
+        use: transform(use(false, ext)),
       },
     ],
   }

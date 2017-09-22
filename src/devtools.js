@@ -2,7 +2,9 @@ import webpack from 'webpack'
 
 export function entry(options) {
   return options.useDevServer
-    ? [`webpack-hot-middleware/client?path=http://${options.host}:${options.port}/__webpack_hmr`]
+    ? [
+      `webpack-dev-server/client?http://${options.host}:${options.port}`,
+      'webpack/hot/only-dev-server']
     : []
 }
 
@@ -21,6 +23,8 @@ export function loaders(options) {
 export function plugins(options) {
   return options.useDevServer
     ? [
+      // so module names are named properly and are not just numbers in the console
+      new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
     ] : []

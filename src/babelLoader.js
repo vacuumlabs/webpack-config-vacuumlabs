@@ -1,17 +1,8 @@
-const hmrPlugins =[['react-transform', {
+const catchErrorPlugins =[['react-transform', {
   transforms: [{
-    transform: 'react-transform-hmr',
-    imports: ['react'],
-    locals: ['module'],
-  }, {
     transform: 'react-transform-catch-errors',
     imports: ['react', 'redbox-react'],
   }],
-  superClasses: [
-    'React.Component',
-    'Component',
-    'PureComponent',
-  ],
 }]]
 
 export default function babelLoader(options) {
@@ -25,15 +16,7 @@ export default function babelLoader(options) {
       presets: [['env', {modules: false}], 'react', 'stage-0'],
       plugins: [
         'transform-decorators-legacy',
-        [
-          'transform-runtime',
-          {
-            helpers: false,
-            polyfill: false,
-            regenerator: false,
-          },
-        ],
-        ...(options.useDevServer ? hmrPlugins : []),
+        ...(options.useDevServer ? catchErrorPlugins : []),
         ...(options.env === 'development' ? [] : ['transform-react-constant-elements']),
       ],
 
