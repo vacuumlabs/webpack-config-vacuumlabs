@@ -23,6 +23,8 @@ export function loaders(options) {
 export function plugins(options) {
   return options.useDevServer
     ? [
+      // so module names are named properly and are not just numbers in the console
+      new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
     ] : []
