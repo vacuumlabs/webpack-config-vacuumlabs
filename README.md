@@ -1,13 +1,9 @@
 # webpack-config-vacuumlabs
 
 Default Webpack 2 & 3 config we use in Vacuumlabs. All the loaders, transformers, etc.. are peer
-dependencies and should be installed top-level. You should invoke:
-
-```
-yarn add autoprefixer babel-loader babel-plugin-react-transform babel-plugin-transform-decorators-legacy babel-plugin-transform-react-constant-elements babel-preset-env babel-preset-stage-0 css-loader eslint-loader extract-text-webpack-plugin file-loader postcss-loader react-transform-catch-errors redbox-react sass-loader style-loader url-loader webpack webpack-isomorphic-tools whatwg-fetch --save
-```
-
-(or similar stuff with npm).
+dependencies and should be installed top-level. Just invoke [this command](./peerDeps.md). If
+you think, it's nuisance and the package should install these for themselves, sadly it's not
+possible: the dependencies need to be installed top-level which is only possible
 
 ## Example usage for development
 
@@ -49,4 +45,26 @@ const config = makeConfig(options)
 build(config, () => {
   console.log('Build has finished.') // eslint-disable-line no-console
 })
+```
+
+## Hot reload
+
+The config does only bare minimum on top of native webpack HMR, which is pretty awesome by itself.
+Only try-catch around render are added and react-redbox is rendered on error.
+
+```
+// top level file main.js
+// construct `store` here
+render(<Root store={store} />, appElement)
+
+// a few modules already required by `main.js` won't be updated
+if (module.hot) {
+  module.hot.accept('./Root', () => {
+    const NewRoot = require('./Root').default
+    // if you want to update store as well, you need to re-require it here
+    // OTOH, if you use "Pershing Redux", store is almost never changed, so we just
+    // use the old one.
+    render(<NewRoot store={store} />, appElement)
+  })
+}
 ```
