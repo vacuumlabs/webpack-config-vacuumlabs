@@ -75,3 +75,44 @@ if (module.hot) {
   })
 }
 ```
+
+If you want to warn user on error, with React 16, you can do this by using this simple component:
+
+```
+class CatchError extends React.Component {
+
+  constructor(props) {
+    super(props)
+    // when hot-reloading code, this gets reimported and the component is recreated.
+    // therefore we always start with no error
+    this.state = {}
+  }
+
+  componentDidCatch(error, info) { // eslint-disable-line handle-callback-err
+    // seems that error object itself if of not so great value.
+    // I couldn't solve this issue with HMR:
+    // https://facebook.github.io/react/docs/cross-origin-errors.html
+    // however, error logged in the console is quite helpful.
+    this.setState({hasError: true})
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1> Houston, we have a problem </h1>
+    }
+    return this.props.children
+  }
+
+}
+
+```
+
+which you use as simply as:
+```
+const Root = ({store}) => (
+  <CatchError>
+    //... some more decorators here?
+    <App />
+  </CatchError>)
+
+```
