@@ -1,6 +1,6 @@
 {
   "name": "webpack-config-vacuumlabs",
-  "version": "1.1.10",
+  "version": "2.0.0",
   "description": "Default Webpack 2 & 3 config we use in vacuumlabs.",
   "main": "dist/index.js",
   "scripts": {
@@ -50,7 +50,6 @@
     "eslint-loader": "1",
     "extract-text-webpack-plugin": "3",
     "file-loader": "0.11",
-    "redbox-react": "1",
     "sass-loader": "6",
     "style-loader": "0.18",
     "url-loader": "0.5",
@@ -61,10 +60,8 @@
     "whatwg-fetch": "2",
     "node-sass": "4",
     "postcss-loader": "2",
-    "react-transform": "^0.0.3",
-    "react-transform-catch-errors": "1",
-    "react": "15 || 16",
-    "react-dom": "15 || 16",
+    "react": "^16.0.0-rc.3",
+    "react-dom": "^16.0.0-rc.3",
     "babel-core": "6 || 7"
   }
 }

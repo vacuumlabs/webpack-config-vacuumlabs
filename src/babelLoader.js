@@ -1,9 +1,3 @@
-const catchErrorPlugins =[['react-transform', {
-  transforms: [{
-    transform: 'react-transform-catch-errors',
-    imports: ['react', 'redbox-react'],
-  }],
-}]]
 
 export default function babelLoader(options) {
   return {
@@ -16,7 +10,6 @@ export default function babelLoader(options) {
       presets: [['env', {modules: false}], 'react', 'stage-0'],
       plugins: [
         'transform-decorators-legacy',
-        ...(options.useDevServer ? catchErrorPlugins : []),
         ...(options.env === 'development' ? [] : ['transform-react-constant-elements']),
       ],
 

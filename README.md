@@ -1,9 +1,16 @@
 # webpack-config-vacuumlabs
 
-Default Webpack 2 & 3 config we use in Vacuumlabs. All the loaders, transformers, etc.. are peer
-dependencies and should be installed top-level. Just invoke [this command](./peerDeps.md). If
-you think, it's nuisance and the package should install these for themselves, sadly it's not
-possible: the dependencies need to be installed top-level which is only possible
+Default Webpack 2 & 3 config we use in Vacuumlabs.
+
+Use version ^1 for React ^15. Should also work with React 16, though you won't benefit from newer
+React version.
+
+Use version ^2 for React ^16.
+
+All the loaders, transformers, etc.. are peer dependencies and should be installed top-level. Just
+invoke [this command](./peerDeps.md). If you think, it's nuisance and the package should install
+these for themselves, sadly it's not possible: the dependencies need to be installed top-level which
+is only guaranteed by using peer-dependency mechanism.
 
 ## Example usage for development
 
