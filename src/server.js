@@ -2,7 +2,7 @@
 import webpack from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'
 
-export default (webpackConfig, options, done) => {
+export default (webpackConfig, options, done) => 
   new WebpackDevServer(webpack(webpackConfig), {
     publicPath: webpackConfig.output.publicPath,
     hot: true,
@@ -25,12 +25,12 @@ export default (webpackConfig, options, done) => {
       hash: false,
       timings: false,
       chunks: false,
-      chunkModules: false
-    }
+      chunkModules: false,
+    },
   }).listen(options.port, options.host, (err) => {
     if (err) {
       console.log(err) //eslint-disable-line no-console
     }
     console.log(`Webpack server has started on port ${options.port}`) // eslint-disable-line no-console
+    done && done()
   })
-}
