@@ -45,6 +45,8 @@ const options = {
   env: 'production',
   entry: path.join(__dirname, '../src/client/index.js'),
   buildDir: path.join(__dirname, '../build'),
+  publicPath: '/build/',
+  // useHashedAssetNames: true, // to output app.[hash].js and app.[hash].css 
 }
 
 const config = makeConfig(options)

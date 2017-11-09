@@ -47,5 +47,7 @@ export function loaders(options) {
 export function plugins(options) {
   return options.useDevServer
     ? []
-    : [new ExtractTextPlugin({filename: 'app.css', allChunks: true})]
+    : [new ExtractTextPlugin({
+        filename: options.useHashedAssetNames ? 'app.[contenthash].css' : 'app.css', 
+        allChunks: true})]
 }
