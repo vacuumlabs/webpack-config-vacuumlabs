@@ -1,6 +1,6 @@
 {
   "name": "webpack-config-vacuumlabs",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Default Webpack 2 & 3 config we use in vacuumlabs.",
   "main": "dist/index.js",
   "scripts": {

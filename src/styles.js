@@ -7,7 +7,7 @@ const _loaders = {
   scss: 'sass-loader',
   sass: 'sass-loader?indentedSyntax',
 }
-const cssModulesConfig = '?modules&localIdentName=[path][name]---[local]---[hash:base64:8]'
+const cssModulesConfig = '?modules&camelCase=dashes&localIdentName=[path][name]---[local]---[hash:base64:8]'
 
 const postcssLoader = {
   loader: 'postcss-loader',
