@@ -1,4 +1,4 @@
-import Plugin from 'webpack-isomorphic-tools/plugin'
+/*import Plugin from 'webpack-isomorphic-tools/plugin'
 import isomorphicConfig from './isomorphic-config'
 
 const plugin = new Plugin(isomorphicConfig)
@@ -8,3 +8,4 @@ export default function(options) {
     ? [plugin.development()]
     : [plugin]
 }
+*/

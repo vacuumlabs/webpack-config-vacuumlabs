@@ -1,5 +1,6 @@
 import autoprefixer from 'autoprefixer'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+
 import _ from 'lodash'
 
 const _loaders = {
@@ -7,17 +8,27 @@ const _loaders = {
   scss: 'sass-loader',
   sass: 'sass-loader?indentedSyntax',
 }
-const cssModulesConfig = '?modules&camelCase=dashes&localIdentName=[path][name]---[local]---[hash:base64:8]'
+const cssModuleOptions = {
+  modules: true,
+  camelCase: 'dashes',
+  localIdentName: '[path][name]---[local]---[hash:base64:8]',
+  importLoaders: 1,
+}
 
-const postcssLoader = {
+const postCssLoader = {
   loader: 'postcss-loader',
   options: {
+    //use this option instead default not append to default
     plugins: () => [autoprefixer({browsers: 'last 2 version'})],
   },
 }
 
-const cssLoader = (modules) => `css-loader${modules ? cssModulesConfig : ''}`
-const use = (modules, ext) => _.compact([cssLoader(modules), postcssLoader, _loaders[ext]])
+const cssLoader = (modules) => ({
+  loader: 'css-loader',
+  options: modules ? cssModuleOptions : {},
+})
+
+const use = (modules, ext) => _.compact([cssLoader(modules), postCssLoader, _loaders[ext]])
 
 function rule(transform, ext) {
   return {
@@ -37,7 +48,7 @@ function rule(transform, ext) {
 export function loaders(options) {
   const transform = options.useDevServer
     ? (l) => ['style-loader', ...l]
-    : (l) => ExtractTextPlugin.extract({fallback: 'style-loader', use: l})
+    : (l) => [MiniCssExtractPlugin.loader, ...l]
 
   return _.keys(_loaders).map(_.partial(rule, transform))
 }
@@ -47,7 +58,7 @@ export function loaders(options) {
 export function plugins(options) {
   return options.useDevServer
     ? []
-    : [new ExtractTextPlugin({
+    : [new MiniCssExtractPlugin({
       filename: options.useHashedAssetNames ? 'app.[contenthash].css' : 'app.css',
-      allChunks: true})]
+    })]
 }

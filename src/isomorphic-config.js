@@ -1,4 +1,4 @@
-import Plugin from 'webpack-isomorphic-tools/plugin'
+/*import Plugin from 'webpack-isomorphic-tools/plugin'
 
 export default {
   assets: {
@@ -34,3 +34,4 @@ export default {
     },
   },
 }
+*/

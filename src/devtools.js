@@ -27,5 +27,6 @@ export function plugins(options) {
       new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
+      new webpack.LoaderOptionsPlugin({options: {}}),
     ] : []
 }

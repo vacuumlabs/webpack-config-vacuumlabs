@@ -1,4 +1,4 @@
-import isomorphic from './isomorphic'
+//import isomorphic from './isomorphic'
 import * as styles from './styles'
 import assetsLoaders from './assetsLoaders'
 import babelLoader from './babelLoader'
@@ -17,7 +17,7 @@ export default function makeConfig(options) {
     // care about columns, which makes this devtool faster than eval-source-map.
     // http://webpack.github.io/docs/configuration.html#devtool
     devtool: options.env === 'development' ? 'cheap-module-eval-source-map' : '',
-
+    mode: options.env === 'development' ? 'development' : 'production',
     entry: {
       app: [
         ...polyfills,
@@ -34,13 +34,20 @@ export default function makeConfig(options) {
       ],
     },
     output: output(options),
+    optimization: {
+      minimize: true,
+      minimizer: [
+        ...optimize(options),
+      ],
+    },
     plugins: [
       ...globals(options),
       ...devtools.plugins(options),
       ...styles.plugins(options),
-      ...optimize(options),
-      ...isomorphic(options),
+      //  ...isomorphic(options),
     ],
-
+    performance: {
+      hints: false,
+    },
   }
 }

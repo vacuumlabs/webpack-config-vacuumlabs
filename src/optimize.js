@@ -1,12 +1,16 @@
-import webpack from 'webpack'
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin'
 
 export default function(options) {
   return options.env === 'development'
     ? []
-    : [new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        screw_ie8: true,
-        warnings: false, // Because uglify reports irrelevant warnings.
+    : [new UglifyJsPlugin({
+      uglifyOptions: {
+        compress: {
+          warnings: false, // Because uglify reports irrelevant warnings.
+        },
+        sourceMap: false,
       },
+      cache: true,
+      parallel: true,
     })]
 }
