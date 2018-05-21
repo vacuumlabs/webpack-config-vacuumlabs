@@ -2,9 +2,7 @@ import webpack from 'webpack'
 
 export function entry(options) {
   return options.useDevServer
-    ? [
-      `webpack-dev-server/client?http://${options.host}:${options.port}`,
-      'webpack/hot/only-dev-server']
+    ? [`webpack-hot-middleware/client?path=http://${options.host}:${options.port}/__webpack_hmr`]
     : []
 }
 

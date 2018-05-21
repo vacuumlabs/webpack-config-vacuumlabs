@@ -1,9 +1,16 @@
 /* eslint-disable no-console */
 import webpack from 'webpack'
-import WebpackDevServer from 'webpack-dev-server'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
+import express from 'express'
+import proxy from 'http-proxy-middleware'
 
-export default (webpackConfig, options, done) =>
-  new WebpackDevServer(webpack(webpackConfig), {
+
+export default (webpackConfig, options, done) => {
+  const webpackServer = express()
+  const compiler = webpack(webpackConfig)
+
+  webpackServer.use(webpackDevMiddleware(compiler, {
     publicPath: webpackConfig.output.publicPath,
     hot: true,
     historyApiFallback: true,
@@ -27,10 +34,16 @@ export default (webpackConfig, options, done) =>
       chunks: false,
       chunkModules: false,
     },
-  }).listen(options.port, options.host, (err) => {
+  }))
+  webpackServer.use(webpackHotMiddleware(compiler))
+  webpackServer.use('*', proxy({target: `http://${options.host}:${options.port}`}))
+
+  webpackServer.listen(options.port, options.host, (err) => {
     if (err) {
       console.log(err) //eslint-disable-line no-console
     }
     console.log(`Webpack server has started on port ${options.port}`) // eslint-disable-line no-console
     done && done()
   })
+  return webpackServer
+}
