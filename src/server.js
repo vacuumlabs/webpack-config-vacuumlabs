@@ -36,7 +36,7 @@ export default (webpackConfig, options, done) => {
     },
   }))
   webpackServer.use(webpackHotMiddleware(compiler))
-  webpackServer.use('*', proxy({target: `http://${options.host}:${options.port}`}))
+  webpackServer.use('*', proxy({target: `http://${options.target.host}:${options.target.port}`}))
 
   webpackServer.listen(options.port, options.host, (err) => {
     if (err) {
