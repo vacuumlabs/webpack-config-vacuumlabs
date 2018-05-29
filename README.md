@@ -1,11 +1,13 @@
 # webpack-config-vacuumlabs
 
-Default Webpack 2 & 3 config we use in Vacuumlabs.
+Default Webpack 4 config we use in Vacuumlabs.
 
 Use version ^1 for React ^15. Should also work with React 16, though you won't benefit from newer
 React version.
 
 Use version ^2 for React ^16.
+
+For Webpack 2 & 3 use version ^1 or ^2
 
 All the loaders, transformers, etc.. are peer dependencies and should be installed top-level. Just
 invoke [this command](./peerDeps.md). If you think, it's nuisance and the package should install
@@ -25,6 +27,10 @@ const options = {
   port: 8888,
   entry: path.join(__dirname, '../../src/client/index.js'),
   buildDir: path.join(__dirname, '../../build'),
+  target: {
+    host: config.host,
+    port: config.port,
+  },
 }
 
 const webpackConfig = makeConfig(options)
@@ -46,7 +52,7 @@ const options = {
   entry: path.join(__dirname, '../src/client/index.js'),
   buildDir: path.join(__dirname, '../build'),
   publicPath: '/build/',
-  // useHashedAssetNames: true, // to output app.[hash].js and app.[hash].css 
+  // useHashedAssetNames: true, // to output app.[hash].js and app.[hash].css
 }
 
 const config = makeConfig(options)

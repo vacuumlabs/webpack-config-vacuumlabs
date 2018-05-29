@@ -1,4 +1,3 @@
-//import isomorphic from './isomorphic'
 import * as styles from './styles'
 import assetsLoaders from './assetsLoaders'
 import babelLoader from './babelLoader'
@@ -46,7 +45,6 @@ export default function makeConfig(options) {
       ...devtools.plugins(options),
       ...styles.plugins(options),
       new ProgressBarPlugin(),
-      //  ...isomorphic(options),
     ],
     performance: {
       hints: false,
