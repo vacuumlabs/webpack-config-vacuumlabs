@@ -40,7 +40,7 @@
     "eslint": "4",
     "eslint-config-vacuumlabs": "1",
     "eslint-plugin-import": "2",
-    "eslint-plugin-react": "7"
+    "eslint-plugin-react": "7",
   },
   "peerDependencies": {
     "autoprefixer": "^8.5.0",
@@ -51,6 +51,7 @@
     "babel-preset-env": "^1.7",
     "babel-preset-react": "^6",
     "css-loader": "^0.28.11",
+    "cssnano": "^3.10.0",
     "eslint-loader": "^2",
     "file-loader": "^1.1.11",
     "http-proxy-middleware": "^0.18.0",

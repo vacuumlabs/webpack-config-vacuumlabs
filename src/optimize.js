@@ -9,8 +9,12 @@ export default function(options) {
           warnings: false, // Because uglify reports irrelevant warnings.
         },
         sourceMap: false,
+        ie8: true,
+        safari10: true,
       },
       cache: true,
       parallel: true,
     })]
 }
+
+_.reduce(props, (res,key, value) => ({...res, key: value(props)}, {}))

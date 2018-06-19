@@ -6,7 +6,6 @@ import * as devtools from './devtools'
 import globals from './globals'
 import optimize from './optimize'
 import output from './output'
-import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 
 export default function makeConfig(options) {
   return {
@@ -44,7 +43,6 @@ export default function makeConfig(options) {
       ...globals(options),
       ...devtools.plugins(options),
       ...styles.plugins(options),
-      new ProgressBarPlugin(),
     ],
     performance: {
       hints: false,

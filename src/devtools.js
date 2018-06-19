@@ -1,8 +1,9 @@
 import webpack from 'webpack'
+import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 
 export function entry(options) {
   return options.useDevServer
-    ? [`webpack-hot-middleware/client?path=http://${options.host}:${options.port}/__webpack_hmr`]
+    ? [`webpack-hot-middleware/client`]
     : []
 }
 
@@ -25,6 +26,6 @@ export function plugins(options) {
       new webpack.NamedModulesPlugin(),
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoEmitOnErrorsPlugin(),
-      new webpack.LoaderOptionsPlugin({options: {}}),
-    ] : []
+    ]
+    : [new ProgressBarPlugin()]
 }

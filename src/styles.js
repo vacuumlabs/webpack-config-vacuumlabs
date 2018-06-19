@@ -1,6 +1,7 @@
 import autoprefixer from 'autoprefixer'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
-
+import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin'
+import cssnano from 'cssnano'
 import _ from 'lodash'
 
 const _loaders = {
@@ -58,7 +59,18 @@ export function loaders(options) {
 export function plugins(options) {
   return options.useDevServer
     ? []
-    : [new MiniCssExtractPlugin({
-      filename: options.useHashedAssetNames ? 'app.[contenthash].css' : 'app.css',
-    })]
+    : [
+      new MiniCssExtractPlugin({
+        filename: options.useHashedAssetNames ? 'app.[contenthash].css' : 'app.css',
+      }),
+      new OptimizeCssAssetsPlugin({
+        assetNameRegExp: /\.css$/g,
+        cssProcessor: cssnano,
+        cssProcessorOptions: {
+          discardComments: { removeAll: true },
+          discardEmpty: true
+        },
+        canPrint: true
+      })
+    ]
 }
