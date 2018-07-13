@@ -12,7 +12,7 @@ const cssModulesConfig = '?modules&camelCase=dashes&localIdentName=[path][name]-
 const postcssLoader = {
   loader: 'postcss-loader',
   options: {
-    plugins: () => [autoprefixer({browsers: 'last 2 version'})],
+    plugins: () => [autoprefixer({browsers: 'last 3 versions, not dead, last 5 chrome versions'})],
   },
 }
 
