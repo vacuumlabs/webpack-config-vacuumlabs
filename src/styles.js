@@ -12,7 +12,7 @@ const cssModulesConfig = '?modules&camelCase=dashes&localIdentName=[path][name]-
 const postcssLoader = {
   loader: 'postcss-loader',
   options: {
-    plugins: () => [autoprefixer({browsers: 'last 2 version'})],
+    plugins: () => [autoprefixer({browsers: ['last 3 versions', 'not dead']})],
   },
 }
 
@@ -48,6 +48,6 @@ export function plugins(options) {
   return options.useDevServer
     ? []
     : [new ExtractTextPlugin({
-        filename: options.useHashedAssetNames ? 'app.[contenthash].css' : 'app.css', 
+        filename: options.useHashedAssetNames ? 'app.[contenthash].css' : 'app.css',
         allChunks: true})]
 }
