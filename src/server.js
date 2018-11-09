@@ -2,7 +2,7 @@
 import webpack from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'
 
-export default (webpackConfig, options, done) => 
+export default (webpackConfig, options, done) =>
   new WebpackDevServer(webpack(webpackConfig), {
     publicPath: webpackConfig.output.publicPath,
     hot: true,

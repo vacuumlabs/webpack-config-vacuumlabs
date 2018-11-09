@@ -1,0 +1,32 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: circleci/node:10
+
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restoring Yarn Cache
+          keys:
+            # Find a cache corresponding to this specific package.json checksum.
+            - v-yarn-{{ checksum "package.json" }}
+            # Find the most recent cache regardless of package.json checksum.
+            - v-yarn-
+      - run:
+          name: Installing All Dependencies
+          command: yarn install-peer
+      - save_cache:
+          name: Saving Yarn Cache
+          key: v-yarn-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run:
+          name: Running Tests
+          command: yarn test
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test

@@ -48,6 +48,6 @@ export function plugins(options) {
   return options.useDevServer
     ? []
     : [new ExtractTextPlugin({
-        filename: options.useHashedAssetNames ? 'app.[contenthash].css' : 'app.css', 
-        allChunks: true})]
+      filename: options.useHashedAssetNames ? 'app.[contenthash].css' : 'app.css',
+      allChunks: true})]
 }
