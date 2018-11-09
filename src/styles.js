@@ -67,7 +67,7 @@ export function plugins(options) {
         assetNameRegExp: /\.css$/g,
         cssProcessor: cssnano,
         cssProcessorOptions: {
-          discardComments: { removeAll: true },
+          discardComments: {removeAll: true},
           discardEmpty: true
         },
         canPrint: true

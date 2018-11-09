@@ -3,7 +3,7 @@ import ProgressBarPlugin from 'progress-bar-webpack-plugin'
 
 export function entry(options) {
   return options.useDevServer
-    ? [`webpack-hot-middleware/client`]
+    ? ['webpack-hot-middleware/client']
     : []
 }
 

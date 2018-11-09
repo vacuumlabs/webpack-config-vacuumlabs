@@ -16,5 +16,3 @@ export default function(options) {
       parallel: true,
     })]
 }
-
-_.reduce(props, (res,key, value) => ({...res, key: value(props)}, {}))
