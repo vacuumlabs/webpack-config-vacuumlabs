@@ -9,6 +9,9 @@ Use version ^2 for React ^16.
 
 For Webpack 2 & 3 use version ^1 or ^2
 
+For Babel 7 use version <INSERT VERSION NUMBER>. This version is not compatible with projects which use babel < 7.
+`babel-watch` does not support babel 7 as of middle November, so use `babel-node` instead.
+
 All the loaders, transformers, etc.. are peer dependencies and should be installed top-level. Just
 invoke [this command](./peerDeps.md). If you think, it's nuisance and the package should install
 these for themselves, sadly it's not possible: the dependencies need to be installed top-level which

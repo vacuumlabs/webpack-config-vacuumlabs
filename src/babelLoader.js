@@ -7,10 +7,11 @@ export default function babelLoader(options) {
     options: {
       // when turned on, it sometimes leads to strange errors
       cacheDirectory: false,
-      presets: [['env', {modules: false}], 'react', 'stage-0'],
+      presets: [['@babel/env', {modules: false}], '@babel/react'],
       plugins: [
-        'transform-decorators-legacy',
-        ...(options.env === 'development' ? [] : ['transform-react-constant-elements']),
+        ['@babel/proposal-decorators', {legacy: true}],
+        '@babel/proposal-class-properties',
+        ...(options.env === 'development' ? [] : ['@babel/transform-react-constant-elements']),
       ],
 
     },
