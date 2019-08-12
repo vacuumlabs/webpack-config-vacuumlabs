@@ -5,9 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "install-peer": "node ./getPeerScript.js | sh",
-    "build": "babel -d dist/ src/ && node ./extractPeerDeps.js",
+    "clean": "rm -rf dist",
+    "build": "yarn run clean && babel -d dist/ src/ && node ./extractPeerDeps.js",
     "build-watch": "babel -d dist/ src/ --watch",
-    "prepublish": "npm run build",
+    "prepublish": "yarn run build",
     "test": "eslint . --max-warnings 0",
     "eslint": "eslint ."
   },
